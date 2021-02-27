@@ -1,0 +1,11 @@
+{% extends 'index.html' %} {% block container %}
+<div class="upload_img">
+    <h3>Télécharger une image</h3>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="text" name="title">
+        <textarea type="text" name="description"></textarea>
+        <input type="submit" value="Enregister l'image">
+    </form>
+</div>
+{% endblock %}

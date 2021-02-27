@@ -1,0 +1,45 @@
+<!DOCTYPE html lang="fr">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Python, Flask, SQLite, HTML, CSS">
+    <meta name="authors" content="fvuibert, llimbio, oazab, chirsch">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet " type="text/css " href="{{ url_for('static', filename='css/layout.css') }}">
+    <title>Picshare</title>
+</head>
+
+<body>
+    <header>
+        <h1><a href="/">Picshare</a></h1>
+        <ul class='box'>
+            <li class='placement'>
+                <li><a href='upload.html'>Ajouter une image</a></li>
+                <li><a href='#'>Inscription</a></li>
+                <li><a href='#'>Connexion</a></li>
+        </ul>
+    </header>
+    <!-- <div class="sidebarblock">
+        <h3 class="sidebarblock-item">Categories</h3>
+        <a href="#" class="sidebarblock-button">Les plus Vues</a>
+        <a href="#" class="sidebarblock-button">Les plus récents</a>
+        <a href="#" class="sidebarblock-button">Les plus commentés</a>
+    </div> -->
+
+
+    {% block container %}
+    <div>
+        <h3>Mes images</h3>
+        {% for picture in all_pictures %}
+        <img src="{{ config['UPLOAD_FOLDER'] }}/{{ picture[0] }}" width=250> {% endfor %}
+    </div>
+    {% endblock %}
+
+
+    <footer class="footer">
+        <p class="footer-text">Copyright © 2021 Azab Osama | Tous droit réservés Mentions légales</p>
+    </footer>
+</body>
+
+</html>
