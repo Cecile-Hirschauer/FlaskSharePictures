@@ -1,12 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Raleway:ital,wght@0,400;0,700;1,200&display=swap');
 * {
     margin: 0;
     padding: 0;
-    font: 'Fira Code', sans-serif;
+    font: 'Raleway', sans-serif;
 }
 
-.sidebarblock {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Raleway', sans-serif;
+}
+
+.menu {
+    width: 100%;
+    background-color: black;
+    color: white;
     display: block;
-    position: fixed;
+}
+
+.title {
+    font-family: 'DotGothic16', sans-serif;
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+
+/* .sidebarblock {
+    display: flex;
+    position: relative;
     padding: 0;
     box-sizing: border-box;
     left: 0;
@@ -18,47 +43,13 @@
     z-index: 997;
     color: black;
     overflow: hidden;
-}
+} */
 
 
 /* .sidebarblock-item {} */
 
 
 /* .sidebarblock-button {} */
-
-.box {
-    background: rgb(0, 0, 0);
-    box-shadow: 0px 0px 10px var(--clr-gray200);
-    margin: 0px;
-    padding: rem 0;
-    border-radius: var(--radius);
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-left: auto;
-}
-
-.box,
-li:first-child {
-    margin-right: auto;
-    padding-left: 1rem;
-}
-
-li {
-    margin-right: 60px;
-    list-style: none;
-    color: white;
-}
-
-li a {
-    text-decoration: none;
-    color: #ffffff;
-    font-size: 20px;
-}
-
-li a:hover {
-    color: #ffffff;
-}
 
 .footer {
     height: 100px;
@@ -75,34 +66,13 @@ li a:hover {
     color: #ffffff;
 }
 
-ul {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    line-height: 1.1;
-    box-sizing: border-box;
-}
-
 
 /* formulaire upload Images */
 
 .upload_img {
+    margin: auto;
     display: flex;
-    flex-direction: column;
-    background-color: aquamarine;
     text-align: center;
     align-items: center;
     justify-content: center;
-    color: blue;
-}
-
-.upload_img h3 {
-    text-align: center;
-    color: blue;
 }

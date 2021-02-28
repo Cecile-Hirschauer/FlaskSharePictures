@@ -8,11 +8,11 @@ cursor = db.cursor()
 
 # Creation of table "users".
 # If it existed already, we delete the table and create a new one
-cursor.execute('DROP TABLE IF EXISTS users')
-cursor.execute(""" CREATE TABLE users
-               (id INTEGER PRIMARY KEY AUTOINCREMENT,
-               login VARCHAR(250) NOT NULL,
-               password VARCHAR(250) NOT NULL)""")
+# cursor.execute('DROP TABLE IF EXISTS users')
+# cursor.execute(""" CREATE TABLE users
+#                (id INTEGER PRIMARY KEY AUTOINCREMENT,
+#                login VARCHAR(250) NOT NULL,
+#                password VARCHAR(250) NOT NULL)""")
 
 # Creation of table "categories".
 # If it existed already, we delete the table and create a new one

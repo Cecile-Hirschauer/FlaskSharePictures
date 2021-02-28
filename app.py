@@ -37,7 +37,7 @@ def upload():
     return render_template('upload.html')
 
 @app.route("/upload", methods=["POST"])
-def new_picture():
+def upload_img():
     if 'file' not in request.files:
         return redirect("/upload")
     file = request.files['file']

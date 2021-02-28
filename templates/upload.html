@@ -1,11 +1,27 @@
 {% extends 'index.html' %} {% block container %}
-<div class="upload_img">
+<div class="container-fluid upload_img">
     <h3>Télécharger une image</h3>
-    <form method="post" enctype="multipart/form-data">
+    <form class="row g-3" method="post" enctype="multipart/form-data">
         <input type="file" name="file">
-        <input type="text" name="title">
-        <textarea type="text" name="description"></textarea>
-        <input type="submit" value="Enregister l'image">
+        <div class="col-md-12">
+            <label for="titre" class="form-label" name='title'>Titre</label>
+            <input type="text" class="form-control" id="title" name='title'>
+        </div>
+
+        <div class="col-md-12">
+            <label for="inputState" class="form-label">Catégorie</label>
+            <select id="inputState" class="form-select" name="categories">
+            <option selected>Choisir une catégorie</option>
+            <option>...</option>
+        </select>
+        </div>
+        <div class="col-md-12">
+            <label for="inputState" class="form-label">Description</label>
+            <textarea id="inputState" class="description" name="description"></textarea>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary" value="Enregister">Enregistrer</button>
+        </div>
     </form>
 </div>
 {% endblock %}
