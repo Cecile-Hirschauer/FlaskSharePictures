@@ -12,9 +12,11 @@
 
         <div class="col-md-12">
             <label for="inputState" class="form-label">Catégorie</label>
-            <select id="inputState" class="form-select" name="categories">
-            <option selected>Choisir une catégorie</option>
-            <option>...</option>
+            <select id="inputState" class="form-select" name="category" placeholder="Choisir une catégorie">
+            {% for category in all_categories  %}
+                <option value="{{ category[0] }}">{{ category[0] }}</option>
+            {% endfor %}
+                
         </select>
         </div>
         <div class="col-md-12">

@@ -35,13 +35,9 @@ cursor.execute("""CREATE TABLE pictures
                 description VARCHAR(200),
                 creation_date datetime default (datetime(current_timestamp)),
                 category_id INTEGER,
-                user_id INTEGER,
                 CONSTRAINT fk_categories
                 FOREIGN KEY (category_id)
-                REFERENCES categories(category_id),
-                CONSTRAINT fk_users
-                FOREIGN KEY (user_id)
-                REFERENCES users(user_id))""")
+                REFERENCES categories(category_id))""")
 
 # creation table "comments"
 cursor.execute("DROP TABLE IF EXISTS comments")
@@ -53,10 +49,7 @@ cursor.execute("""CREATE TABLE comments(
                 date_published datetime default (datetime(current_timestamp)),
                 CONSTRAINT fk_pictures
                 FOREIGN KEY (picture_id)
-                REFERENCES pictures(picture_id),
-                CONSTRAINT fk_users
-                FOREIGN KEY (user_id)
-                REFERENCES users(user_id))""")
+                REFERENCES pictures(picture_id))""")
 
 
 

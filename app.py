@@ -1,5 +1,5 @@
 import os
-from flask import Flask, g, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, g, render_template, request, redirect, url_for, send_from_directory, jsonify
 from werkzeug.utils import secure_filename
 import sqlite3
 
@@ -20,13 +20,16 @@ def get_db():
 
 @app.route("/")
 def index():
+    
+    """ show all the pictures order by creation_date desc and all categiries"""
+    
     db = get_db()
-    pictures = db.execute("""SELECT path
+    pictures = db.execute("""SELECT path, title
                           FROM pictures
                           ORDER BY creation_date DESC""")
     categories = db.execute("SELECT name FROM categories ORDER BY name")
     my_categories = categories.fetchall()
-    print("categories:", my_categories[0])
+    # print("categories:", my_categories[0])
     return render_template('index.html', all_pictures=pictures, all_categories=my_categories)
 
 
@@ -38,7 +41,16 @@ def uploaded_file(filename):
 
 @app.route('/upload')
 def upload():
-    return render_template('upload.html')
+    db = get_db()
+    categories = db.execute("SELECT name FROM categories ORDER BY name")
+    my_categories = categories.fetchall()
+    all_categories = []
+    for category in categories:
+        all_categories.append({'name': category[0]})
+    if categories != []:
+        print(all_categories)
+    print("oupsss")
+    return render_template('upload.html', all_categories=my_categories)
 
 @app.route("/upload", methods=["POST"])
 def upload_img():
@@ -49,8 +61,15 @@ def upload_img():
     if file.filename != '':
         filename = secure_filename(file.filename)
         file.save(os.path.join(UPLOAD_FOLDER, filename)) 
+        title = request.form['title']
+        category = request.form['category']
+        description = request.form['description']
         db = get_db()
-        db.execute("INSERT INTO pictures(path) VALUES (?)", [filename])
+        all_category_id = db.execute("SELECT id FROM categories WHERE name = ?", [category])
+        category_id = all_category_id.fetchone()
+        print(category_id[0])
+        db.execute("INSERT INTO pictures(path, title, category_id, description) VALUES (?, ?, ?, ?)",
+                   [filename, title, category_id[0], description])
         db.commit()
     return redirect("/")
 
