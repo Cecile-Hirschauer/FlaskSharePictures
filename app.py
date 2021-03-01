@@ -21,9 +21,13 @@ def get_db():
 @app.route("/")
 def index():
     db = get_db()
-    pictures = db.execute("""SELECT path FROM pictures 
+    pictures = db.execute("""SELECT path
+                          FROM pictures
                           ORDER BY creation_date DESC""")
-    return render_template('index.html', all_pictures=pictures)
+    categories = db.execute("SELECT name FROM categories ORDER BY name")
+    my_categories = categories.fetchall()
+    print("categories:", my_categories[0])
+    return render_template('index.html', all_pictures=pictures, all_categories=my_categories)
 
 
 @app.route('/uploads/<filename>')

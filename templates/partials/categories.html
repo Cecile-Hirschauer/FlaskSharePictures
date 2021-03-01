@@ -1,0 +1,12 @@
+<aside class="container-sm categories col-4">
+    <ul class="list-group" id="nav">
+        <li>
+            <h4>Catégories</h4>
+        </li>
+
+        {% for category in all_categories %}
+        <li class="list-group-item"><a href="/" title="aller à la section 1">{{category[0]}}</a></li>
+        {% endfor %}
+
+    </ul>
+</aside>

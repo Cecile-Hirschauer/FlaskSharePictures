@@ -1,8 +1,10 @@
 {% extends 'index.html' %} {% block container %}
-<div class="container-fluid upload_img">
+<div class="upload_img row justify-content-between">
     <h3>Télécharger une image</h3>
-    <form class="row g-3" method="post" enctype="multipart/form-data">
-        <input type="file" name="file">
+    <form class="row g-4" method="post" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <input type="file" name="file">
+        </div>
         <div class="col-md-12">
             <label for="titre" class="form-label" name='title'>Titre</label>
             <input type="text" class="form-control" id="title" name='title'>
