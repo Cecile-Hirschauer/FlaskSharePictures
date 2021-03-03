@@ -17,7 +17,7 @@
         {% include 'partials/nav.html' %}
     </div>
 
-    <div class="container-flud">
+    <div class="container-fluid">
         {% block container %}
         <div class="row">
 
@@ -27,8 +27,8 @@
                 <h3>Mes images</h3>
                 {% for picture in all_pictures %}
                 <figure class="figure">
-                    <img src="{{ config[ 'UPLOAD_FOLDER'] }}/{{ picture[0] }} " class="figure-img img-fluid rounded ">
-                    <figcaption class="figure-caption text-end ">{{picture[1]}}</figcaption>
+                    <a href="{{url_for('show_picture', id=picture[0])}}"><img src="{{ config[ 'UPLOAD_FOLDER'] }}/{{ picture[1] }} " class="figure-img img-fluid rounded " alt="{{picture[1]}}"></a>
+                    <figcaption class="figure-caption text-end ">{{picture[2]}}</figcaption>
                 </figure>
                 {% endfor %}
             </div>

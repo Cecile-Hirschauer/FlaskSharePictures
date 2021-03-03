@@ -24,7 +24,7 @@ def index():
     """ show all the pictures order by creation_date desc and all categiries"""
     
     db = get_db()
-    pictures = db.execute("""SELECT path, title
+    pictures = db.execute("""SELECT id, path, title
                           FROM pictures
                           ORDER BY creation_date DESC""")
     categories = db.execute("SELECT name FROM categories ORDER BY name")
@@ -72,6 +72,23 @@ def upload_img():
                    [filename, title, category_id[0], description])
         db.commit()
     return redirect("/")
+
+
+# pictures
+
+@app.route('/pictures')
+def all_pictures():
+    db=get_db()
+    cursor = db.execute("""SELECT id, path, title, description from pictures""")
+    return render_template('picture.html')
+
+
+@app.route('/pictures/<int:id>')
+def show_picture(id):
+    db = get_db()
+    cursor = db.execute("SELECT id, path, title, description from pictures where id = ?", [id])
+    picture = cursor.fetchone()
+    return render_template('picture.html', id=picture[0], path=picture[1], title=picture[2], description=picture[3])
 
 
 if __name__ == '__main__':

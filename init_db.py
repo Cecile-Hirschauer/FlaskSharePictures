@@ -22,7 +22,7 @@ cursor.execute("""CREATE TABLE categories
                 name VARCHAR(200) NOT NULL)""")
 
 # We seed the table with initial values.
-# Here we insert 3 categories: "Videogames", "Boardgames" and "Outdoors"
+# Here we insert categories: "Sport", "Artistique", "Gaming", "Animé", "Film"
 for name in ["Sport", "Artistique", "Gaming", "Animé", "Film"]:
     cursor.execute("INSERT INTO categories (name) VALUES (?)", (name,))
 
