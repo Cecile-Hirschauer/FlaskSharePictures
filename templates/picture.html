@@ -8,7 +8,26 @@
             <h5 class="card-title">{{title}}</h5>
             <p class="card-text">{{description}}</p>
             <a class="card-text" href="#"><small class="text-muted">Last updated 3 mins ago</small></a>
+
         </div>
 
     </div>
+    <div class='row'>
+        <div class='col-sm-6 col-sm-offset-3'>
+
+            {% for comment in all_comments %}
+            <div class="card">
+                <div class="card-body">
+                    <iframe width="420" height="315" src="{{ comment[1] }}"></iframe>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Add your new partial here: -->
+            <!-- Comment form -->
+            {% include 'partials/comments.html' %}
+
+        </div>
+    </div>
+
     {% endblock %}

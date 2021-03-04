@@ -1,0 +1,24 @@
+<form action="/upload_comments/{{id}}" method="POST">
+    <input type='hidden' value='comment' name='comment' />
+    <fieldset>
+        <legend>Commentaires</legend>
+
+        <!-- DESCRIPTION -->
+        <div class='form-group'>
+            <label for='comment-content'></label><br>
+            <textarea class='form-control' id='comment-content' name='content' rows='10' placeholder='Ton commentaire ici...'></textarea>
+        </div>
+    </fieldset>
+
+    <!-- BUTTON -->
+    <div class='form-group'>
+        <button class='btn btn-primary' type='submit'>Soumettre</button>
+    </div>
+</form>
+
+<div>
+    {% for comment in all_comments %}
+    <p> {{ comment[0] }} </p>
+    {% endfor %}
+
+</div>

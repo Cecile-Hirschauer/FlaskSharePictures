@@ -97,7 +97,7 @@ def upload_img():
     # print(file)
     if file.filename != '':
         filename = secure_filename(file.filename)
-        file.save(os.path.join(UPLOAD_FOLDER, filename)) 
+        file.save(os.path.join("static", UPLOAD_FOLDER, filename)) 
         title = request.form['title']
         category = request.form['category']
         description = request.form['description']
@@ -127,6 +127,31 @@ def show_picture(id):
     picture = cursor.fetchone()
     return render_template('picture.html', id=picture[0], path=picture[1], title=picture[2], description=picture[3])
 
+
+# comments
+
+@app.route("/pictures/<int:pic_id>/comments")
+def show_comments(pic_id):
+    db = get_db()
+    cursor = db.execute("""SELECT id, comment, picture_id FROM comments WHERE picture_id=?""", [pic_id])
+    pic_comments = cursor.fetchall()
+    cursor = db.execute(
+        "SELECT id, path, title, description from pictures where id = ?", [pic_id])
+    picture = cursor.fetchone()
+    return render_template('picture.html', all_comments=pic_comments, id=picture[0], path=picture[1], title=picture[2], description=picture[3])
+
+
+@app.route("/upload_comments/<int:pic_id>", methods=["POST"])
+def comments_new(pic_id):
+    db = get_db()
+    new_comment = request.form["comment"]
+    if new_comment:
+        cursor = db.execute("INSERT INTO comments(comment, picture_id) values(?, ?)", [new_comment, pic_id])
+        db.commit()
+        print("enregitré")
+    else:
+        print("il y a un soucis")
+    return redirect('/pictures/'+ str(pic_id) +'/comments')
 
 if __name__ == '__main__':
     app.run(debug=True)
