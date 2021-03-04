@@ -5,7 +5,8 @@
         </li>
 
         {% for category in all_categories %}
-        <li class="list-group-item"><a href="/" title="aller à la section 1">{{category[0]}}</a></li>
+        <li class="list-group-item"><a href="{{url_for('pictures_by_cat', name_cat=category[0])}}">{{category[0]}}</a>
+        </li>
         {% endfor %}
 
     </ul>

@@ -27,7 +27,7 @@
                 <h3>Mes images</h3>
                 {% for picture in all_pictures %}
                 <figure class="figure">
-                    <a href="{{url_for('show_picture', id=picture[0])}}"><img src="{{ config[ 'UPLOAD_FOLDER'] }}/{{ picture[1] }} " class="figure-img img-fluid rounded " alt="{{picture[1]}}"></a>
+                    <a href="{{url_for('show_picture', id=picture[0])}}"><img src="{{ url_for('static', filename=config['UPLOAD_FOLDER']) }}/{{ picture[1] }} " class="figure-img img-fluid rounded " alt="{{picture[1]}}"></a>
                     <figcaption class="figure-caption text-end ">{{picture[2]}}</figcaption>
                 </figure>
                 {% endfor %}

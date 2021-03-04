@@ -45,7 +45,6 @@ cursor.execute("""CREATE TABLE comments(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 comment VARCHAR(255),
                 picture_id INTEGER NOT NULL,
-                user_id INTEGER NOT NULL,
                 date_published datetime default (datetime(current_timestamp)),
                 CONSTRAINT fk_pictures
                 FOREIGN KEY (picture_id)

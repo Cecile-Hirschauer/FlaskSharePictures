@@ -4,10 +4,12 @@ from werkzeug.utils import secure_filename
 import sqlite3
 
 UPLOAD_FOLDER = 'uploads'
-ALLOWED_EXTENSIONS = ['png', 'jpg', 'jpeg', 'gif']
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+ALLOWED_EXTENSIONS = ("JPEG", "JPG", "PNG", "GIF")
 
 DATABASE = "app.db"
 
@@ -39,6 +41,35 @@ def uploaded_file(filename):
                                filename)
 
 
+@app.route('/pictures/uploads/<name>')
+def downoload_img(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+
+
+@app.route('/categories/<name_cat>/pictures/uploads/<name>')
+def img_by_cat(name):
+    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+
+
+    
+    
+@app.route('/categories/<name_cat>/pictures')
+def pictures_by_cat(name_cat):
+    db=get_db()
+    pictures = db.execute("""SELECT pictures.id, path, title
+                          FROM pictures
+                          LEFT JOIN categories ON pictures.category_id = categories.id
+                          WHERE categories.name = ?
+                          ORDER BY creation_date DESC""", [name_cat])
+    categories = db.execute("SELECT name FROM categories ORDER BY name")
+    #cat_pictures = pictures.fetchall()
+    my_categories = categories.fetchall()
+    # print("categories:", my_categories[0])
+    return render_template('index.html', all_pictures=pictures, all_categories=my_categories)
+    
+    
+
+
 @app.route('/upload')
 def upload():
     db = get_db()
@@ -52,13 +83,19 @@ def upload():
     print("oupsss")
     return render_template('upload.html', all_categories=my_categories)
 
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 @app.route("/upload", methods=["POST"])
 def upload_img():
     if 'file' not in request.files:
         return redirect("/upload")
     file = request.files['file']
     # print(file)
-    if file.filename != '':
+    if file.filename != '' and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         file.save(os.path.join(UPLOAD_FOLDER, filename)) 
         title = request.form['title']

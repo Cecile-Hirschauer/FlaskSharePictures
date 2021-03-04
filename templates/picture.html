@@ -3,10 +3,11 @@
     <div class="card mb-3">
 
 
-        <img src="{{ config[ 'UPLOAD_FOLDER'] }}/{{ path }}" class="card-img-top" alt="{{title}}">
+        <img src="{{ config[ 'UPLOAD_FOLDER'] }}/{{ path }}" class="card-img-top" alt="{{title}}" width="400">
         <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <p class="card-text">{{description}}</p>
+            <a class="card-text" href="#"><small class="text-muted">Last updated 3 mins ago</small></a>
         </div>
 
     </div>
