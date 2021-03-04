@@ -37,18 +37,18 @@ def index():
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
+    return send_from_directory(os.path.join("static",app.config['UPLOAD_FOLDER']),
                                filename)
 
 
 @app.route('/pictures/uploads/<name>')
 def downoload_img(name):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+    return send_from_directory(os.path.join("static", app.config['UPLOAD_FOLDER']), name)
 
 
 @app.route('/categories/<name_cat>/pictures/uploads/<name>')
 def img_by_cat(name):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], name)
+    return send_from_directory(os.path.join("static", app.config['UPLOAD_FOLDER']), name)
 
 
     
@@ -95,7 +95,7 @@ def upload_img():
         return redirect("/upload")
     file = request.files['file']
     # print(file)
-    if file.filename != '' and allowed_file(file.filename):
+    if file.filename != '':
         filename = secure_filename(file.filename)
         file.save(os.path.join(UPLOAD_FOLDER, filename)) 
         title = request.form['title']
