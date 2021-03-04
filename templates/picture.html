@@ -3,7 +3,7 @@
     <div class="card mb-3">
 
 
-        <img src="{{ config[ 'UPLOAD_FOLDER'] }}/{{ path }}" class="card-img-top" alt="{{title}}" width="400">
+        <img src="{{ url_for('static', filename=config['UPLOAD_FOLDER']) }}/{{ path }}" class="card-img-top" alt="{{title}}" width="400">
         <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <p class="card-text">{{description}}</p>
@@ -18,7 +18,7 @@
             {% for comment in all_comments %}
             <div class="card">
                 <div class="card-body">
-                    <iframe width="420" height="315" src="{{ comment[1] }}"></iframe>
+                    <p width="420" height="315">{{ comment[1]}}</p>
                 </div>
             </div>
             {% endfor %}

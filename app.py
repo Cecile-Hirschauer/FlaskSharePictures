@@ -50,8 +50,6 @@ def downoload_img(name):
 def img_by_cat(name):
     return send_from_directory(os.path.join("static", app.config['UPLOAD_FOLDER']), name)
 
-
-    
     
 @app.route('/categories/<name_cat>/pictures')
 def pictures_by_cat(name_cat):
@@ -144,7 +142,8 @@ def show_comments(pic_id):
 @app.route("/upload_comments/<int:pic_id>", methods=["POST"])
 def comments_new(pic_id):
     db = get_db()
-    new_comment = request.form["comment"]
+    new_comment = request.form["content"]
+    print(new_comment)
     if new_comment:
         cursor = db.execute("INSERT INTO comments(comment, picture_id) values(?, ?)", [new_comment, pic_id])
         db.commit()
