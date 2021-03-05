@@ -1,5 +1,6 @@
 import os
 from flask import Flask, g, render_template, request, redirect, url_for, send_from_directory, jsonify
+import flask_resize
 from werkzeug.utils import secure_filename
 import sqlite3
 
@@ -8,6 +9,10 @@ UPLOAD_FOLDER = 'uploads'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['RESIZE_URL'] = 'https://mysite.com/'
+app.config['RESIZE_ROOT'] = '/home/tech/Matrice_TP/Basic_web/Flask/Picshare_project/fvilber-picshare/static/uploads'
+
+resize = flask_resize.Resize(app)
 
 ALLOWED_EXTENSIONS = ("JPEG", "JPG", "PNG", "GIF")
 
@@ -123,7 +128,11 @@ def show_picture(id):
     db = get_db()
     cursor = db.execute("SELECT id, path, title, description from pictures where id = ?", [id])
     picture = cursor.fetchone()
-    return render_template('picture.html', id=picture[0], path=picture[1], title=picture[2], description=picture[3])
+    cursor = db.execute("""SELECT id, comment, picture_id 
+                        FROM comments WHERE picture_id=?
+                        ORDER BY date_published DESC""", [id])
+    pic_comments = cursor.fetchall()
+    return render_template('picture.html',all_comments=pic_comments, id=picture[0], path=picture[1], title=picture[2], description=picture[3])
 
 
 # comments
@@ -131,7 +140,9 @@ def show_picture(id):
 @app.route("/pictures/<int:pic_id>/comments")
 def show_comments(pic_id):
     db = get_db()
-    cursor = db.execute("""SELECT id, comment, picture_id FROM comments WHERE picture_id=?""", [pic_id])
+    cursor = db.execute("""SELECT id, comment, picture_id 
+                        FROM comments WHERE picture_id=?
+                        ORDER BY date_published DESC""", [pic_id])
     pic_comments = cursor.fetchall()
     cursor = db.execute(
         "SELECT id, path, title, description from pictures where id = ?", [pic_id])

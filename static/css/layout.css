@@ -1,10 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Raleway:ital,wght@0,400;0,700;1,200&display=swap');
+
+/* Color Theme Swatches in Hex */
+
+.Dualit---Coffee-Labels-1-hex {
+    color: #341740;
+}
+
+.Dualit---Coffee-Labels-2-hex {
+    color: #443D73;
+}
+
+.Dualit---Coffee-Labels-3-hex {
+    color: #F2CA80;
+}
+
+.Dualit---Coffee-Labels-4-hex {
+    color: #F29544;
+}
+
+.Dualit---Coffee-Labels-5-hex {
+    color: #BF532C;
+}
+
 * {
     margin: 0;
     padding: 0;
     font: 'Raleway', sans-serif;
     color: black;
+}
+
+body {
+    background: #fcebcb
 }
 
 h1,
@@ -14,27 +41,88 @@ h4,
 h5,
 h6 {
     font-family: 'Raleway', sans-serif;
+    color: #443D73;
+    text-align: center;
+    padding: 5px;
 }
 
-.main {
-    display: flex;
+legend {
+    color: #BF532C;
+    font-size: 18px;
+    padding: 5px;
+}
+
+p {
+    text-align: justify;
+    font-size: 16px;
+}
+
+.container-fluid {
+    padding-top: 5px
 }
 
 .menu {
-    width: 100%;
-    background-color: black;
-    color: white;
-    display: block;
-}
-
-.menu li {
-    color: white;
+    flex-wrap: nowrap;
+    padding-left: 1rem;
+    max-width: 100%;
+    background-color: #341740;
 }
 
 .title {
+    float: left;
+    width: 30%;
     font-family: 'DotGothic16', sans-serif;
     font-weight: bold;
-    font-size: 1.5em;
+    font-size: 4vw;
+    color: #fcebcb;
+}
+
+
+/* COULEURS DES HOVER */
+
+.my_button {
+    background-color: #F29544;
+    color: #341740;
+    transition-duration: 0.4s;
+    border-radius: 12px;
+    align-self: center;
+}
+
+.my_button:hover {
+    background-color: #341740;
+    color: #F29544;
+}
+
+.menu ul {
+    padding-bottom: 20px;
+    width: 70%;
+    float: left;
+}
+
+.menu li a {
+    font-size: 18px;
+    color: #fcebcb;
+    text-decoration: none;
+    float: right;
+}
+
+.menu li a:hover {
+    color: #BF532C;
+    text-decoration: none;
+}
+
+
+/* images accueil */
+
+.figure {
+    display: block;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.titre_img {
+    text-align: center;
 }
 
 
@@ -42,35 +130,40 @@ h6 {
 
 .categories {
     padding: 10px;
+    margin: 0;
+}
+
+.categories ul li a {
+    font-size: 18px;
+    color: #443D73;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.categories ul li a:hover {
+    color: #BF532C;
+    text-decoration: none;
 }
 
 
-/* .sidebarblock {
+/* page image */
+
+.image {
+    margin: 15px;
+    text-align: center;
+    width: 80%;
     display: flex;
-    position: relative;
-    padding: 0;
-    box-sizing: border-box;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 18%;
-    height: 100%;
-    background-color: white;
-    z-index: 997;
-    color: black;
-    overflow: hidden;
-} */
+    justify-content: center;
+}
 
-
-/* .sidebarblock-item {} */
-
-
-/* .sidebarblock-button {} */
+.centrer {
+    padding: 0 20%;
+}
 
 .footer {
     height: 100px;
     width: 100%;
-    background-color: #7c0000;
+    background-color: #341740;
     display: flex;
 }
 
@@ -79,7 +172,7 @@ h6 {
     align-items: center;
     justify-content: center;
     width: 100%;
-    color: #ffffff;
+    color: #BF532C;
 }
 
 
@@ -91,4 +184,29 @@ h6 {
     text-align: center;
     align-items: center;
     justify-content: center;
+}
+
+button {
+    margin: 15px;
+}
+
+.upload_form {
+    padding: 10px
+}
+
+.description {
+    height: 200px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    max-width: 80%;
+}
+
+
+/* COMMENTAIRE */
+
+.form-group {
+    align-items: center;
+    align-self: center;
 }

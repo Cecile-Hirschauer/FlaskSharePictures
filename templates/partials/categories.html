@@ -1,11 +1,11 @@
 <aside class="container-sm categories col-4">
     <ul class="list-group" id="nav">
-        <li>
+        <li class="category">
             <h4>Catégories</h4>
         </li>
 
         {% for category in all_categories %}
-        <li class="list-group-item"><a href="{{url_for('pictures_by_cat', name_cat=category[0])}}">{{category[0]}}</a>
+        <li class="category list-group-item"><a href="{{url_for('pictures_by_cat', name_cat=category[0])}}">{{category[0]}}</a>
         </li>
         {% endfor %}
 

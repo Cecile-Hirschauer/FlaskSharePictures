@@ -1,19 +1,18 @@
 {% extends 'index.html' %} {% block container %}
-<div class="img row justify-content-between">
-    <div class="card mb-3">
+<div class="img row justify-content-between centrer">
+    <div class="image card mb-3">
 
 
-        <img src="{{ url_for('static', filename=config['UPLOAD_FOLDER']) }}/{{ path }}" class="card-img-top" alt="{{title}}" width="400">
+        <img src="{{ url_for('static', filename=config['UPLOAD_FOLDER']) }}/{{ path }}" class="card-img-top" alt="{{title}}" mode="fit" width="400">
         <div class="card-body">
             <h5 class="card-title">{{title}}</h5>
             <p class="card-text">{{description}}</p>
-            <a class="card-text" href="#"><small class="text-muted">Last updated 3 mins ago</small></a>
 
         </div>
 
     </div>
     <div class='row'>
-        <div class='col-sm-6 col-sm-offset-3'>
+        <div class='col-md-12'>
 
             {% for comment in all_comments %}
             <div class="card">

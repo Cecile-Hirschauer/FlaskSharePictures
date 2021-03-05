@@ -1,16 +1,16 @@
 {% extends 'index.html' %} {% block container %}
-<div class="upload_img row justify-content-between">
+<div class="upload_img row justify-content-between centrer">
     <h3>Télécharger une image</h3>
     <form class="row g-4" method="post" enctype="multipart/form-data">
         <div class="col-md-12">
             <input type="file" name="file">
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12 upload_form">
             <label for="titre" class="form-label" name='title'>Titre</label>
             <input type="text" class="form-control" id="title" name='title'>
         </div>
 
-        <div class="col-md-12">
+        <div class="col-md-12 upload_form">
             <label for="inputState" class="form-label">Catégorie</label>
             <select id="inputState" class="form-select" name="category" placeholder="Choisir une catégorie">
             {% for category in all_categories  %}
@@ -19,12 +19,12 @@
                 
         </select>
         </div>
-        <div class="col-md-12">
-            <label for="inputState" class="form-label">Description</label>
-            <textarea id="inputState" class="description" name="description"></textarea>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary" value="Enregister">Enregistrer</button>
+        <div>
+            <div>
+                <label for="inputState" class="form-label">Description</label>
+                <textarea id="inputState" name="description" class="form-control ml-1 shadow-none textarea"></textarea>
+            </div>
+            <div class="mt-2 text-right espace_enreg"><button type="submit" class="my_button btn btn-primary btn-sm shadow-none" value="Enregistrer">Enregistrer</button></div>
         </div>
     </form>
 </div>
