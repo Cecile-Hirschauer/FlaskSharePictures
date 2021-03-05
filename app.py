@@ -1,6 +1,5 @@
 import os
 from flask import Flask, g, render_template, request, redirect, url_for, send_from_directory, jsonify
-import flask_resize
 from werkzeug.utils import secure_filename
 import sqlite3
 
@@ -9,10 +8,8 @@ UPLOAD_FOLDER = 'uploads'
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['RESIZE_URL'] = 'https://mysite.com/'
-app.config['RESIZE_ROOT'] = '/home/tech/Matrice_TP/Basic_web/Flask/Picshare_project/fvilber-picshare/static/uploads'
 
-resize = flask_resize.Resize(app)
+
 
 ALLOWED_EXTENSIONS = ("JPEG", "JPG", "PNG", "GIF")
 
