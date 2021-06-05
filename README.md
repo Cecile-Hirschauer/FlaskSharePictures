@@ -1,4 +1,4 @@
-# Projet Matrice du 22/02/2021 au 05/03/2021
+# Projet réalisé du 22/02/2021 au 05/03/2021
 
 ## Projet en équipe: 4 personnes - Méthodologie: SCRUM
 
